@@ -1,1 +1,18 @@
-<p>customer-update works!</p>
+
+<div *ngIf="customer.id" style="width: 300px;">
+        <form (ngSubmit)="onSubmit()">
+            <h3>Editar</h3>
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" class="form-control" id="name" required [(ngModel)]="customer.name" name="name">
+            </div>
+        
+            <div class="form-group">
+              <label for="age">Age</label>
+              <input type="text" class="form-control" id="age" required [(ngModel)]="customer.age" name="age">
+            </div>
+            
+            <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+        <button (click)='sairDaEdicao()' class="btn btn-outline-danger">X</button>
+</div>

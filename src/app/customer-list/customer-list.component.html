@@ -1,6 +1,42 @@
-  <p></p>  
-  <input class="form-control" id="myInput" type="text" placeholder="Search..">
-  <br>
+<div class="input-group mb-3">
+  <input type="text" class="form-control" placeholder="Search for id.." aria-label="Recipient's username" aria-describedby="basic-addon2" [(ngModel)]="searchCustomer.id">
+    <div class="input-group-append">
+      <button (click)='getCustomerId(searchCustomer.id)' class="btn btn-outline-secondary" type="button">Button</button>
+    </div>
+</div>
+<div *ngIf='searchCustomer.name'>
+<table class="table table-striped">
+    <thead>
+        <tr>
+          <th scope="col"><input type="checkbox" class="checkthis" /></th>
+          <th scope="col">id</th>
+          <th scope="col">First Name</th>
+          <th scope="col">Last Name</th>
+          <th scope="col">Cell Phone</th>
+          <th scope="col">Email</th>
+          <th scope="col">Age</th>
+          <th>#</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row"><input type="checkbox" class="checkthis" /></th>
+          <td>{{ searchCustomer.id }}</td>
+          <td>{{ searchCustomer.name }}</td>
+          <td>{{ searchCustomer.lastName }}</td>
+          <td>{{ searchCustomer.cellPhone }}</td>
+          <td>{{ searchCustomer.email }}</td>
+          <td>{{ searchCustomer.age }}</td>
+          <td scope="row"><button class="btn btn-success btn-sm" (click)='updateUser(customer)'>Edit</button>
+                          <button class="btn btn-danger btn-sm" (click)='deleteUser(customer)'>Delete</button>
+          </td>
+        </tr>
+        <div *ngIf='true'>
+          <tr><app-customer-update></app-customer-update></tr>
+        </div>
+      </tbody>
+</table>
+</div>
 <table class="table table-striped">
         <thead>
           <tr>
@@ -15,18 +51,21 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let customer of customers$" >
+          <tr *ngFor="let customer of customers$ | async" >
             <th scope="row"><input type="checkbox" class="checkthis" /></th>
-            <td>{{ customer._id }}</td>
-            <td>{{ customer.firstName }}</td>
+            <td>{{ customer.id }}</td>
+            <td>{{ customer.name }}</td>
             <td>{{ customer.lastName }}</td>
             <td>{{ customer.cellPhone }}</td>
             <td>{{ customer.email }}</td>
             <td>{{ customer.age }}</td>
-            <td scope="row"><button class="btn btn-success btn-sm" ng-click="deleteUser(customer)">Edit</button>
-                            <button class="btn btn-danger btn-sm" ng-click="deleteUser(customer)">Delete</button>
+            <td scope="row"><button class="btn btn-success btn-sm" (click)='updateUser(customer)'>Edit</button>
+                            <button class="btn btn-danger btn-sm" (click)='deleteUser(customer)'>Delete</button>
             </td>
           </tr>
+          <div *ngIf='true'>
+            <tr><app-customer-update></app-customer-update></tr>
+          </div>
         </tbody>
       </table>
 

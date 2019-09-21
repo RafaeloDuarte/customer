@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { CustomerListComponent } from '../customer-list/customer-list.component';
+import { Customer } from '../customer.model';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-customer-update',
@@ -7,9 +10,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CustomerUpdateComponent implements OnInit {
 
-  constructor() { }
+  customer:Customer = new Customer;
+
+  constructor(private customerList: CustomerListComponent, private service:DataService) { }
 
   ngOnInit() {
+    this.customerList.customerEmit.subscribe(
+      customerEmitido => this.customer = customerEmitido
+    )
   }
 
+  sairDaEdicao(){
+    this.customer = new Customer
+  }
+
+  onSubmit(){
+    this.service.updateCustomer(this.customer.id,this.customer)
+    this.sairDaEdicao()
+  }
+    
 }

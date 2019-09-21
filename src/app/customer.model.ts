@@ -2,8 +2,8 @@
 //mport {Address} from './address.model';
 export class Customer  {
 
-    public _id  : string;
-    public firstName : string;
+    public id  : number;
+    public name : string;
     public lastName : string;
     public cellPhone: string;
     public email: string;
