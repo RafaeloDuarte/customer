@@ -39,13 +39,21 @@ export class DataService {
   getCustomersList(): Observable<any> {
     return this.http.get(`${this.baseUrl}`);
   }
+  
+  getCustomer(id: number): Observable<any>{
+    return this.http.get(`${this.baseUrl}/search/${id}`) 
+  }
+
+  getCustomerByAge(age: number): Observable<any>{
+    return this.http.get(`${this.baseUrl}/age/${age}`) 
+  }
+
+  getCustomerByName(name: string): Observable<any>{
+    return this.http.get(`${this.baseUrl}/name/${name}`) 
+  }
 
   updateCustomer(id: number, value: any): Observable<any>{
     return this.http.put(`${this.baseUrl}/${id}`,value)
-  }
-
-  getCustomer(id: number): Observable<Object>{
-    return this.http.get(`${this.baseUrl}/${id}`) 
   }
 
 }

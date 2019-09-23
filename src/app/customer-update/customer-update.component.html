@@ -1,7 +1,7 @@
 
 <div *ngIf="customer.id" style="width: 300px;">
         <form (ngSubmit)="onSubmit()">
-            <h3>Editar</h3>
+            <h3>Editar {{customer.name}}</h3>
             <div class="form-group">
               <label for="name">Name</label>
               <input type="text" class="form-control" id="name" required [(ngModel)]="customer.name" name="name">

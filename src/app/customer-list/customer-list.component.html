@@ -1,11 +1,18 @@
 <div class="input-group mb-3">
-  <input type="text" class="form-control" placeholder="Search for id.." aria-label="Recipient's username" aria-describedby="basic-addon2" [(ngModel)]="searchCustomer.id">
+  <input type="text" class="form-control" placeholder="Search by age.." aria-label="Recipient's username" aria-describedby="basic-addon2" [(ngModel)]="searchCustomers.age">
     <div class="input-group-append">
-      <button (click)='getCustomerId(searchCustomer.id)' class="btn btn-outline-secondary" type="button">Button</button>
+      <button (click)='getCustomerAge(searchCustomers.age)' class="btn btn-outline-secondary" type="button">Button</button>
     </div>
 </div>
-<div *ngIf='searchCustomer.name'>
-<table class="table table-striped">
+<div class="input-group mb-3">
+  <input type="text" class="form-control" placeholder="Search by name.." aria-label="Recipient's username" aria-describedby="basic-addon2" [(ngModel)]="searchCustomers.name">
+    <div class="input-group-append">
+      <button (click)='getCustomerName(searchCustomers.name)' class="btn btn-outline-secondary" type="button">Button</button>
+    </div>
+</div>
+
+<div *ngIf="existe">
+  <table class="table table-striped" >
     <thead>
         <tr>
           <th scope="col"><input type="checkbox" class="checkthis" /></th>
@@ -19,23 +26,24 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr *ngFor="let customer of searchCustomers | async">
           <th scope="row"><input type="checkbox" class="checkthis" /></th>
-          <td>{{ searchCustomer.id }}</td>
-          <td>{{ searchCustomer.name }}</td>
-          <td>{{ searchCustomer.lastName }}</td>
-          <td>{{ searchCustomer.cellPhone }}</td>
-          <td>{{ searchCustomer.email }}</td>
-          <td>{{ searchCustomer.age }}</td>
+          <td>{{ customer.id }}</td>
+          <td>{{ customer.name }}</td>
+          <td>{{ customer.lastName }}</td>
+          <td>{{ customer.cellPhone }}</td>
+          <td>{{ customer.email }}</td>
+          <td>{{ customer.age }}</td>
           <td scope="row"><button class="btn btn-success btn-sm" (click)='updateUser(customer)'>Edit</button>
                           <button class="btn btn-danger btn-sm" (click)='deleteUser(customer)'>Delete</button>
+                          <button (click)='sairDaEdicao()' class="btn btn-outline-danger">X</button>
           </td>
         </tr>
-        <div *ngIf='true'>
-          <tr><app-customer-update></app-customer-update></tr>
-        </div>
       </tbody>
-</table>
+  </table>
+</div>
+<div>
+    <tr><app-customer-update></app-customer-update></tr>
 </div>
 <table class="table table-striped">
         <thead>
@@ -63,9 +71,6 @@
                             <button class="btn btn-danger btn-sm" (click)='deleteUser(customer)'>Delete</button>
             </td>
           </tr>
-          <div *ngIf='true'>
-            <tr><app-customer-update></app-customer-update></tr>
-          </div>
         </tbody>
       </table>
 

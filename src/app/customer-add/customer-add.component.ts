@@ -26,6 +26,7 @@ export class CustomerAddComponent implements OnInit {
   }
 
   newCustomer(){
+    this.customer = new Customer
     this.submitted = false
   }
 

@@ -13,12 +13,11 @@ import { Observable } from 'rxjs';
 export class CustomerListComponent implements OnInit {
 
   customers$: Observable<Customer[]>;
-  searchCustomer: any = new Customer;
+  searchCustomers: Observable<Object> = new Observable
+  existe: boolean = false
   @Output() customerEmit = new EventEmitter<Customer>();
 
-  constructor(private dataService: DataService) { 
-    console.log('CustomerListComponent')
-  }
+  constructor(private dataService: DataService) { }
 
   ngOnInit() {
     //return this.dataService.getCustomers().subscribe(data => this.customers$ = data);
@@ -41,15 +40,24 @@ export class CustomerListComponent implements OnInit {
         },
         error => console.log(error));
   }
+  
+  getCustomerAge(age: number){
+    this.searchCustomers = this.dataService.getCustomerByAge(age)
+    this.existe = true
+  }
+
+  getCustomerName(name: string){
+    this.searchCustomers = this.dataService.getCustomerByName(name)
+    this.existe = true
+  }
 
   updateUser(customer:Customer){
     this.customerEmit.emit(customer);
     console.log('Emitindo')
   }
 
-  getCustomerId(customerId: number){
-    this.searchCustomer = this.dataService.getCustomer(customerId)
-    console.log(`Pesquisar cliente por id ${this.searchCustomer.name}`)
+  sairDaEdicao(){
+    this.existe = false
   }
 
   reloadData() {
