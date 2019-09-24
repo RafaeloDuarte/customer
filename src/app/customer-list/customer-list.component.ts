@@ -31,8 +31,8 @@ export class CustomerListComponent implements OnInit {
   }
 
   deleteUser(customer:Customer){
-    console.log(customer.id)
-    this.dataService.deleteCustomer(customer.id)
+    console.log(customer._id)
+    this.dataService.deleteCustomer(customer._id)
       .subscribe(
         data => {
           console.log(data);

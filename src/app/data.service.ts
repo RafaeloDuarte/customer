@@ -32,7 +32,7 @@ export class DataService {
   //   return this.http.post(`${this.baseUrl}` + `/`, customer.id)
   // }
 
-  deleteCustomer(id: number): Observable<any> {
+  deleteCustomer(id: string): Observable<any> {
     return this.http.delete(`${this.baseUrl}/${id}`, { responseType: 'text' });
   }
 
@@ -40,7 +40,7 @@ export class DataService {
     return this.http.get(`${this.baseUrl}`);
   }
   
-  getCustomer(id: number): Observable<any>{
+  getCustomer(id: string): Observable<any>{
     return this.http.get(`${this.baseUrl}/search/${id}`) 
   }
 
@@ -52,8 +52,8 @@ export class DataService {
     return this.http.get(`${this.baseUrl}/name/${name}`) 
   }
 
-  updateCustomer(id: number, value: any): Observable<any>{
-    return this.http.put(`${this.baseUrl}/${id}`,value)
+  updateCustomer(_id: string, value: any): Observable<any>{
+    return this.http.put(`${this.baseUrl}/${Number(_id)}`,value)
   }
 
 }

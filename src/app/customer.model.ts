@@ -2,7 +2,7 @@
 //mport {Address} from './address.model';
 export class Customer  {
 
-    public id  : number;
+    public _id  : string;
     public name : string;
     public lastName : string;
     public cellPhone: string;
