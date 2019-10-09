@@ -25,7 +25,7 @@ export class CustomerUpdateComponent implements OnInit {
   }
 
   onSubmit(){
-    this.service.updateCustomer(this.customer._id,this.customer)
+    this.service.updateCustomer(Number(this.customer._id),this.customer)
     this.sairDaEdicao()
   }
     

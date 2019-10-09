@@ -52,7 +52,7 @@ export class DataService {
     return this.http.get(`${this.baseUrl}/name/${name}`) 
   }
 
-  updateCustomer(_id: string, value: any): Observable<any>{
+  updateCustomer(_id: number, value: any): Observable<any>{
     return this.http.put(`${this.baseUrl}/${Number(_id)}`,value)
   }
 
